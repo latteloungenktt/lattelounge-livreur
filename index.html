@@ -5,191 +5,124 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Latte Lounge Delivery</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="LL Delivery">
 <meta name="theme-color" content="#0A0A0A">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0A0A0A; --surface:#161616; --card:#1E1E1E; --border:#2A2A2A;
-    --gold:#C9A84C; --gold2:#F0D080; --red:#D64045; --green:#3DAA6E;
-    --orange:#E07B39; --blue:#3A7BD5; --purple:#8B5CF6;
-    --text:#F0EDE8; --muted:#888;
+    --bg:#0A0A0A;--surface:#161616;--card:#1E1E1E;--border:#2A2A2A;
+    --gold:#C9A84C;--gold2:#F0D080;--red:#D64045;--green:#3DAA6E;
+    --orange:#E07B39;--blue:#3A7BD5;--purple:#8B5CF6;--text:#F0EDE8;--muted:#888;
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px;}
 
-  /* ── LOGIN ── */
-  #loginScreen{position:fixed;inset:0;z-index:999;background:linear-gradient(135deg,#0a0500,#1a0f00,#0a0500);display:flex;flex-direction:column;align-items:center;justify-content:center;}
-  .lg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(224,123,57,.15),transparent 65%);pointer-events:none;}
-  .ll{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--orange);letter-spacing:3px;margin-bottom:4px;position:relative;text-align:center;}
-  .ls{font-size:11px;color:var(--muted);letter-spacing:4px;margin-bottom:36px;position:relative;text-align:center;}
-  .lb{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:30px 34px;width:320px;box-shadow:0 30px 80px rgba(0,0,0,.6);}
-  .lt{font-family:'Playfair Display',serif;font-size:18px;color:var(--text);text-align:center;margin-bottom:6px;}
-  .lh{font-size:12px;color:var(--muted);text-align:center;margin-bottom:22px;}
-  .lw{position:relative;margin-bottom:12px;}
-  .li{width:100%;padding:12px 42px 12px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'DM Mono',monospace;font-size:16px;letter-spacing:3px;outline:none;transition:border-color .2s;}
-  .li:focus{border-color:var(--orange);}
-  .li::placeholder{letter-spacing:1px;font-size:13px;color:var(--muted);font-family:'DM Sans',sans-serif;}
-  .le-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;}
-  .le{color:var(--red);font-size:12px;text-align:center;margin-bottom:10px;min-height:16px;}
-  .lbtn{width:100%;padding:13px;background:var(--orange);border:none;border-radius:10px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;cursor:pointer;transition:all .2s;}
-  .lbtn:hover{filter:brightness(1.1);}
+  /* HEADER */
+  header{background:linear-gradient(135deg,#1a0f00,#2d1a00,#1a0f00);border-bottom:2px solid var(--orange);padding:14px 20px;text-align:center;}
+  .hlogo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--orange);letter-spacing:2px;}
+  .hsub{font-size:11px;color:var(--muted);letter-spacing:3px;margin-top:3px;}
+  .hclock{font-family:'DM Mono',monospace;font-size:13px;color:var(--gold2);margin-top:4px;}
 
-  /* ── HEADER ── */
-  header{background:linear-gradient(135deg,#1a0f00,#2d1a00,#1a0f00);border-bottom:2px solid var(--orange);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
-  .hlogo{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:var(--orange);letter-spacing:2px;}
-  .hsub{font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:2px;}
-  .hright{display:flex;align-items:center;gap:10px;}
-  .hclock{font-family:'DM Mono',monospace;font-size:13px;color:var(--gold2);}
-  .hbtn{background:none;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:12px;padding:5px 12px;cursor:pointer;}
-  .hbtn:hover{border-color:var(--red);color:var(--red);}
+  /* FORM SECTION */
+  .form-section{padding:20px;}
+  .form-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px;}
+  .form-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--orange);margin-bottom:4px;}
+  .form-sub{font-size:12px;color:var(--muted);margin-bottom:18px;}
+  .input-field{width:100%;padding:13px 14px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s;margin-bottom:12px;}
+  .input-field:focus{border-color:var(--orange);}
+  .input-field::placeholder{color:var(--muted);}
+  .input-field.code{font-family:'DM Mono',monospace;font-size:18px;letter-spacing:4px;text-transform:uppercase;text-align:center;}
+  .btn-search{width:100%;padding:15px;background:var(--orange);border:none;border-radius:12px;color:#fff;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Playfair Display',serif;letter-spacing:1px;}
+  .btn-search:hover{filter:brightness(1.1);transform:translateY(-1px);}
+  .btn-search:active{transform:scale(.98);}
 
-  /* ── SOUND BANNER ── */
-  #soundBanner{background:linear-gradient(135deg,#1a0800,#2d1500);border-bottom:2px solid var(--orange);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
-  #soundBanner.hidden{display:none;}
-  .sound-text{font-size:13px;color:var(--orange);font-weight:700;}
-  .sound-sub{font-size:11px;color:var(--muted);margin-top:2px;}
-  .btn-unlock{background:var(--orange);border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:700;padding:10px 20px;cursor:pointer;white-space:nowrap;}
+  /* RESULT */
+  .result-section{padding:0 20px;}
+  .error-box{background:rgba(214,64,69,.1);border:1px solid var(--red);border-radius:12px;padding:16px;text-align:center;color:var(--red);font-size:14px;}
 
-  /* ── STATS ── */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 20px;}
-  .sc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;}
-  .sc-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:5px;}
-  .sc-v{font-family:'Playfair Display',serif;font-size:24px;}
-
-  /* ── TABS ── */
-  .tabs{display:flex;gap:0;padding:0 20px 14px;border-bottom:1px solid var(--border);}
-  .tab{flex:1;padding:10px;text-align:center;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
-  .tab.active{color:var(--orange);border-bottom-color:var(--orange);}
-
-  /* ── ORDERS ── */
-  .orders{padding:16px 20px;}
-  .empty{text-align:center;color:var(--muted);padding:60px 20px;font-size:14px;line-height:2;}
-  .empty-icon{font-size:48px;margin-bottom:12px;}
-
-  /* ── ORDER CARD ── */
-  .ocard{background:var(--surface);border-radius:16px;overflow:hidden;margin-bottom:14px;animation:pop .3s ease;}
+  /* ORDER CARD */
+  .order-card{background:var(--surface);border:2px solid var(--orange);border-radius:16px;overflow:hidden;animation:pop .3s ease;}
   @keyframes pop{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
-  .ocard.attente_retrait{border:2px solid var(--orange);box-shadow:0 0 20px rgba(224,123,57,.25);}
-  .ocard.en_livraison{border:2px solid var(--purple);}
-  .ocard.livre{border:2px solid var(--green);opacity:.7;}
 
-  /* Card header */
-  .ch{padding:14px 16px;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--border);background:var(--card);}
-  .ch-left{}
-  .ch-code{font-family:'DM Mono',monospace;font-size:15px;color:var(--orange);font-weight:700;letter-spacing:2px;}
-  .ch-time{font-size:11px;color:var(--muted);margin-top:2px;}
-  .ch-badge{font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;white-space:nowrap;}
-  .badge-attente{background:rgba(224,123,57,.15);color:var(--orange);border:1px solid var(--orange);}
-  .badge-livraison{background:rgba(139,92,246,.15);color:var(--purple);border:1px solid var(--purple);}
-  .badge-livre{background:rgba(61,170,110,.15);color:var(--green);border:1px solid var(--green);}
+  .oc-header{background:linear-gradient(135deg,#1a0f00,#2d1a00);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+  .oc-code{font-family:'DM Mono',monospace;font-size:16px;color:var(--orange);font-weight:700;letter-spacing:2px;}
+  .oc-status{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;}
+  .status-prep{background:rgba(224,123,57,.15);color:var(--orange);border:1px solid var(--orange);}
+  .status-livr{background:rgba(139,92,246,.15);color:var(--purple);border:1px solid var(--purple);}
+  .status-done{background:rgba(61,170,110,.15);color:var(--green);border:1px solid var(--green);}
 
   /* Client info */
-  .cinfo{padding:12px 16px;border-bottom:1px solid var(--border);}
-  .cinfo-name{font-size:14px;font-weight:700;color:var(--text);}
-  .cinfo-phone{font-family:'DM Mono',monospace;font-size:13px;color:var(--gold2);margin-top:4px;}
-  .cinfo-pay{font-size:12px;color:var(--muted);margin-top:3px;}
+  .oc-client{padding:14px 16px;border-bottom:1px solid var(--border);background:var(--card);}
+  .oc-client-title{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;}
+  .oc-client-name{font-size:15px;font-weight:700;color:var(--text);}
+  .oc-client-phone{font-family:'DM Mono',monospace;font-size:14px;color:var(--gold2);margin-top:4px;}
+  .oc-client-pay{font-size:12px;color:var(--muted);margin-top:4px;}
 
   /* Items */
-  .citems{padding:10px 16px;border-bottom:1px solid var(--border);}
-  .citem{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);padding:3px 0;border-bottom:1px solid var(--border);}
-  .citem:last-child{border-bottom:none;}
+  .oc-items{padding:12px 16px;border-bottom:1px solid var(--border);}
+  .oc-items-title{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;}
+  .oc-item{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-bottom:1px dashed var(--border);color:var(--muted);}
+  .oc-item:last-child{border-bottom:none;}
+  .oc-total{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--card);border-bottom:1px solid var(--border);}
+  .oc-total-label{font-size:12px;color:var(--muted);}
+  .oc-total-val{font-family:'DM Mono',monospace;font-size:18px;color:var(--orange);font-weight:700;}
 
-  /* Total */
-  .ctotal{padding:10px 16px;display:flex;justify-content:space-between;align-items:center;background:var(--card);border-bottom:1px solid var(--border);}
-  .ctotal-pay{font-size:11px;color:var(--muted);}
-  .ctotal-val{font-family:'DM Mono',monospace;font-size:16px;color:var(--orange);font-weight:700;}
-
-  /* Livraison info */
-  .cdelivery{padding:10px 16px;border-bottom:1px solid var(--border);background:rgba(224,123,57,.04);}
-  .cdelivery-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;}
-  .cdelivery-row:last-child{margin-bottom:0;}
+  /* Location */
+  .oc-location{padding:12px 16px;border-bottom:1px solid var(--border);}
+  .oc-location-title{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;}
+  .oc-location-dist{font-size:13px;color:var(--text);margin-bottom:6px;}
+  .btn-maps{width:100%;padding:12px;background:var(--blue);border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+  .btn-maps:hover{filter:brightness(1.1);}
 
   /* Notes */
-  .cnotes{padding:8px 16px;font-size:12px;color:var(--gold2);background:rgba(201,168,76,.05);border-bottom:1px solid var(--border);}
+  .oc-notes{padding:10px 16px;font-size:12px;color:var(--gold2);background:rgba(201,168,76,.05);border-bottom:1px solid var(--border);}
+
+  /* Already assigned */
+  .oc-assigned{padding:12px 16px;background:rgba(139,92,246,.05);border-bottom:1px solid var(--border);}
+  .oc-assigned-title{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;}
+  .oc-assigned-name{font-size:14px;font-weight:700;color:var(--purple);}
+  .oc-assigned-phone{font-family:'DM Mono',monospace;font-size:13px;color:var(--purple);margin-top:2px;}
 
   /* Actions */
-  .cactions{display:flex;gap:8px;padding:12px 16px;}
-  .btn-prendre{flex:2;padding:13px;background:var(--orange);border:none;border-radius:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;}
+  .oc-actions{padding:14px 16px;display:flex;flex-direction:column;gap:8px;}
+  .btn-prendre{padding:14px;background:var(--orange);border:none;border-radius:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Playfair Display',serif;}
   .btn-prendre:hover{filter:brightness(1.1);}
-  .btn-livrer{flex:2;padding:13px;background:var(--green);border:none;border-radius:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;}
+  .btn-livrer{padding:14px;background:var(--green);border:none;border-radius:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Playfair Display',serif;}
   .btn-livrer:hover{filter:brightness(1.1);}
-  .btn-itineraire{flex:1;padding:13px;background:var(--blue);border:none;border-radius:12px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
-  .btn-itineraire:hover{filter:brightness(1.1);}
+  .btn-new{padding:12px;background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--muted);font-size:14px;cursor:pointer;}
+  .btn-new:hover{border-color:var(--orange);color:var(--orange);}
 
-  /* Toast */
-  .toast{position:fixed;top:80px;right:20px;left:20px;background:var(--orange);color:#fff;border-radius:14px;padding:14px 20px;font-size:14px;font-weight:700;box-shadow:0 8px 32px rgba(224,123,57,.5);z-index:500;display:none;text-align:center;}
+  /* Success */
+  .success-box{background:rgba(61,170,110,.1);border:1px solid var(--green);border-radius:12px;padding:16px;text-align:center;color:var(--green);font-size:14px;font-weight:700;margin-bottom:12px;}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="loginScreen">
-  <div class="lg"></div>
-  <div style="font-size:48px;margin-bottom:12px;position:relative;">🛵</div>
-  <div class="ll">Latte Lounge<br>Delivery</div>
-  <div class="ls">APPLICATION LIVREUR</div>
-  <div class="lb">
-    <div class="lt">🔐 Accès Livreur</div>
-    <div class="lh">Entrez votre mot de passe</div>
-    <div class="lw">
-      <input class="li" type="password" id="pwdInput" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')checkPwd()">
-      <button class="le-btn" onclick="togglePwd()">👁</button>
-    </div>
-    <div class="le" id="loginError"></div>
-    <button class="lbtn" onclick="checkPwd()">Connexion →</button>
-  </div>
-</div>
-
-<!-- SOUND BANNER -->
-<div id="soundBanner">
-  <div>
-    <div class="sound-text">🔔 Activez les alertes sonores</div>
-    <div class="sound-sub">Pour être notifié des nouvelles commandes à livrer</div>
-  </div>
-  <button class="btn-unlock" onclick="unlockSound()">🔔 Activer</button>
-</div>
-
-<!-- HEADER -->
 <header>
-  <div>
-    <div class="hlogo">🛵 LL Delivery</div>
-    <div class="hsub">Tableau de bord livreur</div>
-  </div>
-  <div class="hright">
-    <div class="hclock" id="clock">--:--:--</div>
-    <button class="hbtn" onclick="logout()">⏏ Déco</button>
-  </div>
+  <div style="font-size:32px;margin-bottom:6px;">🛵</div>
+  <div class="hlogo">Latte Lounge Delivery</div>
+  <div class="hsub">ESPACE LIVREUR</div>
+  <div class="hclock" id="clock">--:--:--</div>
 </header>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="sc"><div class="sc-l">À retirer</div><div class="sc-v" style="color:var(--orange)" id="sAttente">0</div></div>
-  <div class="sc"><div class="sc-l">En livraison</div><div class="sc-v" style="color:var(--purple)" id="sLivraison">0</div></div>
-  <div class="sc"><div class="sc-l">Livrées</div><div class="sc-v" style="color:var(--green)" id="sLivre">0</div></div>
+<div class="form-section">
+  <div class="form-card">
+    <div class="form-title">Prendre une commande</div>
+    <div class="form-sub">Entrez vos informations et le numéro de commande</div>
+    <input class="input-field" type="text" id="livreurNom" placeholder="Votre nom complet">
+    <input class="input-field" type="tel" id="livreurTel" placeholder="Votre numéro de téléphone">
+    <input class="input-field code" type="text" id="codeCommande" placeholder="CODE" maxlength="6" oninput="this.value=this.value.toUpperCase()">
+    <button class="btn-search" onclick="rechercherCommande()">🔍 Rechercher la commande</button>
+  </div>
 </div>
 
-<!-- TABS -->
-<div class="tabs">
-  <div class="tab active" id="tab1" onclick="setTab('attente_retrait',this)">🟠 À retirer</div>
-  <div class="tab" id="tab2" onclick="setTab('en_livraison',this)">🟣 En livraison</div>
-  <div class="tab" id="tab3" onclick="setTab('livre',this)">✅ Livrées</div>
-</div>
-
-<!-- ORDERS -->
-<div class="orders" id="ordersContainer">
-  <div class="empty"><div class="empty-icon">📭</div>Aucune commande à retirer<br><small>Les commandes apparaissent ici en temps réel</small></div>
-</div>
-
-<div class="toast" id="toast">🛵 Nouvelle commande à retirer !</div>
+<div class="result-section" id="resultSection"></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, onChildAdded, onChildChanged, onChildRemoved, update, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-const PASSWORD = 'Lattelounge2026';
-const FB = {
+const FB={
   apiKey:"AIzaSyBZnorgx0FgFzQk-ynMWLWAGblA1797wL8",
   authDomain:"latte-lounge-caisse.firebaseapp.com",
   databaseURL:"https://latte-lounge-caisse-default-rtdb.europe-west1.firebasedatabase.app",
@@ -198,187 +131,133 @@ const FB = {
   messagingSenderId:"864095614648",
   appId:"1:864095614648:web:4d827e02772b5b73fca64d"
 };
+const app=initializeApp(FB);
+const db=getDatabase(app);
 
-let db, orders={}, currentTab='attente_retrait', isFirstLoad=true;
-let audioCtx=null, soundUnlocked=false;
-
-// ── AUTH ──
-window.checkPwd=function(){
-  const val=document.getElementById('pwdInput').value;
-  if(val===PASSWORD){
-    const ls=document.getElementById('loginScreen');
-    ls.style.transition='opacity .4s'; ls.style.opacity='0';
-    setTimeout(()=>{ls.style.display='none'; startFirebase();},400);
-    sessionStorage.setItem('delivery_auth','1');
-  } else {
-    const err=document.getElementById('loginError');
-    err.textContent='❌ Mot de passe incorrect';
-    document.getElementById('pwdInput').value='';
-    setTimeout(()=>err.textContent='',3000);
-  }
-};
-window.togglePwd=function(){const i=document.getElementById('pwdInput');i.type=i.type==='password'?'text':'password';};
-window.logout=function(){if(!confirm('Se déconnecter ?'))return;sessionStorage.removeItem('delivery_auth');location.reload();};
-
-if(sessionStorage.getItem('delivery_auth')==='1'){
-  document.getElementById('loginScreen').style.display='none';
-  startFirebase();
-}
-
-// ── CLOCK ──
+// Clock
 setInterval(()=>document.getElementById('clock').textContent=new Date().toLocaleTimeString('fr-FR'),1000);
 document.getElementById('clock').textContent=new Date().toLocaleTimeString('fr-FR');
 
-// ── SOUND ──
-window.unlockSound=function(){
-  try{
-    audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-    const o=audioCtx.createOscillator(),g=audioCtx.createGain();
-    o.connect(g);g.connect(audioCtx.destination);
-    g.gain.setValueAtTime(0,audioCtx.currentTime);
-    o.start();o.stop(audioCtx.currentTime+0.001);
-    soundUnlocked=true;
-    document.getElementById('soundBanner').classList.add('hidden');
-    playAlert();
-  }catch(e){}
+let currentOrderKey=null;
+let currentUnsub=null;
+
+window.rechercherCommande=function(){
+  const nom=document.getElementById('livreurNom').value.trim();
+  const tel=document.getElementById('livreurTel').value.trim();
+  const code=document.getElementById('codeCommande').value.trim().toUpperCase();
+  const result=document.getElementById('resultSection');
+
+  if(!nom){alert('Veuillez entrer votre nom.');return;}
+  if(!tel){alert('Veuillez entrer votre numéro de téléphone.');return;}
+  if(!code||code.length<4){alert('Veuillez entrer le numéro de commande.');return;}
+
+  result.innerHTML='<div style="text-align:center;color:var(--muted);padding:30px;font-size:14px;">🔍 Recherche en cours...</div>';
+
+  // Unsubscribe previous
+  if(currentUnsub) currentUnsub();
+
+  // Search by trackingCode
+  const { query, orderByChild, equalTo } = window._fbFns||{};
+  import("https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js").then(({query,orderByChild,equalTo,onValue})=>{
+    const q=query(ref(db,'commandes'),orderByChild('trackingCode'),equalTo(code));
+    currentUnsub=onValue(q,snap=>{
+      if(!snap.exists()){
+        result.innerHTML='<div class="error-box">❌ Commande introuvable.<br><small>Vérifiez le numéro de commande.</small></div>';
+        return;
+      }
+      const entries=Object.entries(snap.val());
+      const [key,order]=entries[0];
+      currentOrderKey=key;
+      renderOrder(order,key,nom,tel);
+    },{onlyOnce:false});
+  });
 };
 
-function playAlert(){
-  if(!soundUnlocked||!audioCtx)return;
-  try{
-    [[440,.0],[554,.2],[659,.4],[880,.6]].forEach(([freq,t])=>{
-      const o=audioCtx.createOscillator(),g=audioCtx.createGain();
-      o.connect(g);g.connect(audioCtx.destination);
-      o.frequency.value=freq; o.type='sine';
-      g.gain.setValueAtTime(0,audioCtx.currentTime+t);
-      g.gain.linearRampToValueAtTime(0.4,audioCtx.currentTime+t+0.06);
-      g.gain.linearRampToValueAtTime(0,audioCtx.currentTime+t+0.22);
-      o.start(audioCtx.currentTime+t);
-      o.stop(audioCtx.currentTime+t+0.25);
-    });
-  }catch(e){}
-}
+function renderOrder(order,key,livreurNom,livreurTel){
+  const result=document.getElementById('resultSection');
 
-// ── FIREBASE ──
-function startFirebase(){
-  const app=initializeApp(FB);
-  db=getDatabase(app);
-  const ordersRef=ref(db,'commandes');
+  // Status badge
+  const statusMap={
+    envoye:{label:'📤 Nouvelle',cls:'status-prep'},
+    confirme:{label:'✅ Confirmée',cls:'status-prep'},
+    preparation:{label:'🍳 En préparation',cls:'status-prep'},
+    en_livraison:{label:'🛵 En livraison',cls:'status-livr'},
+    livre:{label:'🎉 Livrée',cls:'status-done'},
+    annule:{label:'❌ Annulée',cls:'status-prep'},
+  };
+  const st=statusMap[order.status]||{label:order.status,cls:'status-prep'};
 
-  onChildAdded(ordersRef,snap=>{
-    const order={...snap.val(),_key:snap.key};
-    orders[snap.key]=order;
-    if(!isFirstLoad && order.status==='attente_retrait'){playAlert();showToast();}
-    renderOrders(); updateStats();
-  });
-  onChildChanged(ordersRef,snap=>{
-    const order={...snap.val(),_key:snap.key};
-    const wasAttente=orders[snap.key]?.status!=='attente_retrait' && order.status==='attente_retrait';
-    orders[snap.key]=order;
-    if(!isFirstLoad && wasAttente){playAlert();showToast();}
-    renderOrders(); updateStats();
-  });
-  onChildRemoved(ordersRef,snap=>{
-    delete orders[snap.key];
-    renderOrders(); updateStats();
-  });
-  setTimeout(()=>isFirstLoad=false,2500);
-}
+  const itemsHtml=(order.items||[]).map(it=>`<div class="oc-item"><span>${it.name} × ${it.qty}</span><span>${it.subtotal} MRU</span></div>`).join('');
 
-function showToast(){
-  const t=document.getElementById('toast');
-  t.style.display='block';
-  setTimeout(()=>t.style.display='none',4000);
-}
+  const locationHtml=order.localisation?`
+    <div class="oc-location">
+      <div class="oc-location-title">📍 Localisation client</div>
+      <div class="oc-location-dist">Distance : <strong style="color:var(--orange)">${order.localisation.distance} km</strong></div>
+      <button class="btn-maps" onclick="window.open('${order.localisation.mapsLink}','_blank')">
+        🗺 Ouvrir dans Google Maps
+      </button>
+    </div>`:'';
 
-// ── TABS ──
-window.setTab=function(tab,btn){
-  currentTab=tab;
-  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderOrders();
-};
+  // Assigned driver info
+  const assignedHtml=order.livreur?`
+    <div class="oc-assigned">
+      <div class="oc-assigned-title">🛵 Livreur assigné</div>
+      <div class="oc-assigned-name">👤 ${order.livreur.nom}</div>
+      <div class="oc-assigned-phone">📞 ${order.livreur.tel}</div>
+    </div>`:'';
 
-// ── STATS ──
-function updateStats(){
-  const all=Object.values(orders);
-  document.getElementById('sAttente').textContent=all.filter(o=>o.status==='attente_retrait').length;
-  document.getElementById('sLivraison').textContent=all.filter(o=>o.status==='en_livraison').length;
-  document.getElementById('sLivre').textContent=all.filter(o=>o.status==='livre').length;
-}
-
-// ── RENDER ──
-function renderOrders(){
-  const container=document.getElementById('ordersContainer');
-  const list=Object.values(orders)
-    .filter(o=>o.status===currentTab)
-    .sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
-
-  if(!list.length){
-    const msgs={attente_retrait:'Aucune commande à retirer',en_livraison:'Aucune livraison en cours',livre:'Aucune livraison terminée aujourd\'hui'};
-    container.innerHTML=`<div class="empty"><div class="empty-icon">📭</div>${msgs[currentTab]||'Aucune commande'}<br><small>Les commandes apparaissent ici en temps réel</small></div>`;
-    return;
+  // Actions
+  let actionsHtml='';
+  if(order.status==='livre'||order.status==='annule'){
+    actionsHtml=`<div class="success-box">${order.status==='livre'?'🎉 Cette commande a déjà été livrée !':'❌ Cette commande a été annulée.'}</div>`;
+  } else if(order.status==='en_livraison' && order.livreur){
+    // Check if this driver is assigned
+    actionsHtml=`
+      <button class="btn-livrer" onclick="marquerLivre('${key}')">🎉 Marquer comme livrée</button>
+      <button class="btn-new" onclick="resetForm()">🔄 Nouvelle recherche</button>`;
+  } else if(!order.livreur || order.status!=='en_livraison'){
+    actionsHtml=`
+      <button class="btn-prendre" onclick="prendreEnCharge('${key}','${livreurNom.replace(/'/g,"\\'")}','${livreurTel}')">🛵 Prendre en charge cette livraison</button>
+      <button class="btn-new" onclick="resetForm()">🔄 Nouvelle recherche</button>`;
   }
 
-  container.innerHTML='';
-  list.forEach(order=>{
-    const key=order._key;
-    const badgeClass=order.status==='attente_retrait'?'badge-attente':order.status==='en_livraison'?'badge-livraison':'badge-livre';
-    const badgeLabel=order.status==='attente_retrait'?'🟠 À retirer':order.status==='en_livraison'?'🟣 En livraison':'✅ Livrée';
-
-    const itemsHtml=(order.items||[]).map(it=>`<div class="citem"><span>${it.name} × ${it.qty}</span><span>${it.subtotal} MRU</span></div>`).join('');
-
-    // Actions selon statut
-    let actionsHtml='';
-    if(order.status==='attente_retrait'){
-      actionsHtml=`
-        <button class="btn-prendre" onclick="prendreEnCharge('${key}')">✅ Je prends en charge</button>
-        ${order.localisation?`<button class="btn-itineraire" onclick="openMaps('${order.localisation.mapsLink}')">📍 Itinéraire</button>`:''}
-      `;
-    } else if(order.status==='en_livraison'){
-      actionsHtml=`
-        <button class="btn-livrer" onclick="marquerLivre('${key}')">🎉 Marquer comme livrée</button>
-        ${order.localisation?`<button class="btn-itineraire" onclick="openMaps('${order.localisation.mapsLink}')">📍 Itinéraire</button>`:''}
-      `;
-    }
-
-    const card=document.createElement('div');
-    card.className=`ocard ${order.status}`;
-    card.innerHTML=`
-      <div class="ch">
-        <div class="ch-left">
-          <div class="ch-code">#${order.trackingCode||'—'}</div>
-          <div class="ch-time">${order.date||''} · ${order.time||''}</div>
+  result.innerHTML=`
+    <div class="order-card">
+      <div class="oc-header">
+        <div class="oc-code">#${order.trackingCode}</div>
+        <span class="oc-status ${st.cls}">${st.label}</span>
+      </div>
+      <div class="oc-client">
+        <div class="oc-client-title">👤 Informations client</div>
+        <div class="oc-client-name">${order.clientName||'—'}</div>
+        <div class="oc-client-phone">📞 ${order.clientPhone||'—'}</div>
+        <div class="oc-client-pay">💳 ${order.paiement||''}</div>
+      </div>
+      <div class="oc-items">
+        <div class="oc-items-title">🍽 Articles commandés</div>
+        ${itemsHtml}
+      </div>
+      <div class="oc-total">
+        <div>
+          <div class="oc-total-label">${order.fraisLivraison?'Livraison incluse : '+order.fraisLivraison+' MRU':''}</div>
         </div>
-        <span class="ch-badge ${badgeClass}">${badgeLabel}</span>
+        <div class="oc-total-val">TOTAL : ${order.total} MRU</div>
       </div>
-      <div class="cinfo">
-        <div class="cinfo-name">👤 ${order.clientName||'—'}</div>
-        <div class="cinfo-phone">📞 ${order.clientPhone||'—'}</div>
-        <div class="cinfo-pay">💳 ${order.paiement||''}</div>
-      </div>
-      <div class="citems">${itemsHtml}</div>
-      <div class="ctotal">
-        <div class="ctotal-pay">${order.fraisLivraison?'🛵 Livraison: '+order.fraisLivraison+' MRU':''}</div>
-        <div class="ctotal-val">TOTAL: ${order.total} MRU</div>
-      </div>
-      ${order.localisation?`
-      <div class="cdelivery">
-        <div class="cdelivery-row"><span style="color:var(--muted)">📍 Distance</span><span style="color:var(--orange);font-weight:700">${order.localisation.distance} km</span></div>
-        <div class="cdelivery-row"><span style="color:var(--muted)">🗺 Localisation</span><span style="color:var(--blue);font-size:11px">GPS disponible</span></div>
-      </div>`:''}
-      ${order.notes?`<div class="cnotes">📝 ${order.notes}</div>`:''}
-      ${actionsHtml?`<div class="cactions">${actionsHtml}</div>`:''}
-    `;
-    container.appendChild(card);
-  });
+      ${locationHtml}
+      ${order.notes?`<div class="oc-notes">📝 ${order.notes}</div>`:''}
+      ${assignedHtml}
+      <div class="oc-actions">${actionsHtml}</div>
+    </div>`;
 }
 
-// ── ACTIONS ──
-window.prendreEnCharge=async function(key){
-  if(!confirm('Confirmer la prise en charge de cette commande ?'))return;
+window.prendreEnCharge=async function(key,nom,tel){
+  if(!confirm(`Confirmer la prise en charge de cette commande ?\n\nLivreur : ${nom}\nTél : ${tel}`))return;
   try{
-    await update(ref(db,`commandes/${key}`),{status:'en_livraison'});
+    await update(ref(db,`commandes/${key}`),{
+      status:'en_livraison',
+      livreur:{nom,tel}
+    });
+    document.querySelector('.btn-prendre').textContent='✅ Prise en charge confirmée !';
   }catch(e){alert('Erreur: '+e.message);}
 };
 
@@ -386,15 +265,14 @@ window.marquerLivre=async function(key){
   if(!confirm('Confirmer la livraison de cette commande ?'))return;
   try{
     await update(ref(db,`commandes/${key}`),{status:'livre'});
-    // Supprimer après 60s
-    setTimeout(async()=>{
-      try{await remove(ref(db,`commandes/${key}`));}catch(e){}
-    },60000);
   }catch(e){alert('Erreur: '+e.message);}
 };
 
-window.openMaps=function(mapsLink){
-  window.open(mapsLink,'_blank');
+window.resetForm=function(){
+  document.getElementById('codeCommande').value='';
+  document.getElementById('resultSection').innerHTML='';
+  document.getElementById('codeCommande').focus();
+  if(currentUnsub){currentUnsub();currentUnsub=null;}
 };
 </script>
 </body>
